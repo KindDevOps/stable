@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  application:
+  - apiVersion: v2
+    created: "2025-12-17T18:55:07.776567598Z"
+    description: Generic helm chart for all kind of applications
+    digest: 38136c8f6bbc158bf28561ea403807350e5ef82d67844187d55ec605fda264ac
+    home: https://github.com/KindDevOps/app_helm_chart/charts/app
+    keywords:
+    - java
+    - node
+    - dotnet
+    - kubernetes
+    - application
+    maintainers:
+    - email: kind.devops@gmail.com
+      name: KindDevops
+    name: application
+    type: application
+    urls:
+    - https://github.com/KindDevOps/stable/releases/download/application-6.14.0/application-6.14.0.tgz
+    version: 6.14.0
+generated: "2025-12-17T18:55:07.776578478Z"
