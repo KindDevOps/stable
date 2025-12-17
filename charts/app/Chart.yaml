@@ -4,22 +4,16 @@ description: Generic helm chart for all kind of applications
 
 type: application
 
-# Helm chart Version
-
 version: 6.14.0
-
 
 keywords:
   - java
   - node
   - dotnet
   - kubernetes
-  - stakater
   - application
 
-home: https://github.com/stakater/application
+home: https://github.com/KindDevOps/app_helm_chart/charts/app
 maintainers:
-- name: Stakater
-  email: hello@stakater.com
-
-icon: https://github.com/stakater/ForecastleIcons/blob/master/stakater.png
+- name: KindDevops
+  email: kind.devops@gmail.com

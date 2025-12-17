@@ -169,7 +169,6 @@ deployment:
     #   imagePullPolicy: IfNotPresent
     #   command: ['/bin/sh']
   # -- (object) Configuration details for fluentdConfigurations.
-  # Only works for specific setup, see <https://medium.com/stakater/dynamic-log-processing-with-fluentd-konfigurator-and-slack-935a5de4eddb>.
   # @section -- Deployment Parameters
   fluentdConfigAnnotations:
     # regex: hello
@@ -527,16 +526,8 @@ service:
   # -- (object) Annotations for service.
   # @section -- Service Parameters
   annotations:
-    # config.xposer.stakater.com/Domain: stakater.com
-    # config.xposer.stakater.com/IngressNameTemplate: '{{ "{{.Service}}-{{.Namespace}}" }}'
-    # config.xposer.stakater.com/IngressURLPath: /
-    # config.xposer.stakater.com/IngressURLTemplate: '{{ "{{.Service}}.{{.Namespace}}.{{.Domain}}" }}'
     # service.alpha.openshift.io/serving-cert-secret-name: |
     #   '{{ template "application.name" . }}-tls'
-    # xposer.stakater.com/annotations: |-
-    #   kubernetes.io/ingress.class: external-ingress
-    #   ingress.kubernetes.io/rewrite-target: /
-    #   ingress.kubernetes.io/force-ssl-redirect: true
   # -- (list) Ports for applications service.
   # @section -- Service Parameters
   ports:
@@ -722,32 +713,6 @@ secretProviderClass:
     #     objectName: host
     #   secretName: secret-mongo-host
     #   type: Opaque
-
-forecastle:
-  # -- (bool) Deploy a [ForecastleApp](https://github.com/stakater/Forecastle) resource.
-  # @section -- ForecastleApp Parameters
-  enabled: false
-  # -- (object) Additional labels for ForecastleApp.
-  # @section -- ForecastleApp Parameters
-  additionalLabels:
-  # -- (string) Icon URL.
-  # @section -- ForecastleApp Parameters
-  icon: https://raw.githubusercontent.com/stakater/ForecastleIcons/master/stakater-big.png
-  # -- (string) Application Name.
-  # Required if `forecastle.enabled` is set to `true`.
-  # @section -- ForecastleApp Parameters
-  displayName: ""
-  # -- (string) Application Group.
-  # @default -- `{{ .Release.Namespace }}`
-  # @section -- ForecastleApp Parameters
-  group: ""
-  # -- (object) Custom properties.
-  # @section -- ForecastleApp Parameters
-  properties:
-    # Owner: foo
-  # -- (bool) Is application network restricted?.
-  # @section -- ForecastleApp Parameters
-  networkRestricted: false
 
 rbac:
   # -- (bool) Enable RBAC.
@@ -950,19 +915,6 @@ vpa:
   updatePolicy:
     updateMode: Auto
 
-endpointMonitor:
-  # -- (bool) Deploy an [IMC EndpointMonitor](https://github.com/stakater/IngressMonitorController) resource.
-  # @section -- EndpointMonitor Parameters
-  enabled: false
-  # -- (object) Additional labels for EndpointMonitor.
-  # @section -- EndpointMonitor Parameters
-  additionalLabels:
-    # key: value
-  # -- (object) Annotations for EndpointMonitor.
-  # @section -- EndpointMonitor Parameters
-  annotations:
-    # key: value
-
 certificate:
   # -- (bool) Deploy a [cert-manager Certificate](https://cert-manager.io) resource.
   # @section -- cert-manager Certificate Parameters
@@ -987,16 +939,10 @@ certificate:
   # -- (tpl/object) Full X509 name specification for certificate.
   # @section -- cert-manager Certificate Parameters
   subject:
-  #  organizations:
-  #    - stakater
   #  countries:
   #    - SE
   #  organizationalUnits:
   #    - '{{ template "application.namespace" . }}'
-  #  localities:
-  #    - Stockholm
-  #  provinces:
-  #    - Stockholm
   # -- (tpl/string) Common name as specified on the DER encoded CSR. This field is not recommended in cases when this certificate is an end-entity certificate. More information can be found in the [cert-manager documentation](https://cert-manager.io/docs/usage/certificate/#:~:text=%23%20Avoid%20using%20commonName,%3A%20example.com).
   # @section -- cert-manager Certificate Parameters
   commonName:
@@ -1129,7 +1075,6 @@ prometheusRule:
   # -- (object) Additional labels for PrometheusRule.
   # @section -- PrometheusRule Parameters
   additionalLabels:
-    # prometheus: stakater-workload-monitoring
     # role: alert-rules
   # -- (list) Groups with alerting rules.
   # Read more about it at [https://docs.openshift.com/container-platform/4.7/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1.html](OpenShift's PrometheusRule documentation).
@@ -1187,8 +1132,6 @@ externalSecret:
     #           property: password
     #   secretStore:
     #      name: secret-store-name-2
-    #   labels:
-    #      stakater.com/app: mongodb
     #   annotations:
     #      key: value
     # postgres:
